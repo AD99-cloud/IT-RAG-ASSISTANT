@@ -56,9 +56,18 @@ async def run():
                 print(f"\nCalling tool: fetch(id='{first_id}')\n")
                 fetch_res = await session.call_tool("fetch", arguments={"id": first_id})
                 _print_tool_result(fetch_res)
+
+                # 5) call answer_question
+                print("\nCalling tool: answer_question(query='Wi-Fi is slow but connected')\n")
+                ans_res = await session.call_tool(
+                    "answer_question",
+                    arguments={"query": "Wi-Fi is slow but connected"},
+                )
+                _print_tool_result(ans_res)
+
             else:
-                print("\nCould not auto-detect a result id from structuredContent. "
-                      "If your search tool returns text-only, we can adjust the server to return structured JSON.")
+                print("\nCould not auto-detect a result id from structuredContent.")
+
 
 
 def main():
